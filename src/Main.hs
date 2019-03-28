@@ -27,7 +27,7 @@ mainLoop :: MVar Int -> Socket -> IO ()
 mainLoop clientCount sock = do
   currentClientCount <- readMVar clientCount
   conn <- accept sock
-  forkIO $ if currentClientCount < 10
+  forkIO $ if currentClientCount < 100
               then bracket_ (modifyMVar_ clientCount (return . (+) 1)) (modifyMVar_ clientCount (return . flip (-) 1)) (runConn conn)
               else dropConn conn
   mainLoop clientCount sock
