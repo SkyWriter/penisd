@@ -33,7 +33,7 @@ mainLoop clientCount sock = do
   mainLoop clientCount sock
 
 almostForever :: IO a -> IO ()
-almostForever action = sequenceA_ $ take 1000 $ repeat action
+almostForever action = sequenceA_ $ take 3 $ repeat action
 
 handlePenisLover :: Socket -> IO ()
 handlePenisLover sock =
